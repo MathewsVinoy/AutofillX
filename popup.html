@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AutoFillX</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <div class="mark">AutoFillX</div>
+        <button id="optionsBtn" class="ghost-btn" title="Edit your profile">
+          Edit profile
+        </button>
+      </header>
+
+      <section id="state-empty" class="state hidden">
+        <p class="lede">You haven't set up your vault yet.</p>
+        <p class="sub">
+          Create a master password once. Every field you save afterward is
+          encrypted with it before it ever touches your disk.
+        </p>
+        <button id="createBtn" class="primary-btn">Set up your vault</button>
+      </section>
+
+      <section id="state-locked" class="state hidden">
+        <p class="lede">Your vault is locked</p>
+        <p class="sub">
+          Enter your master password to unlock autofill for this browsing
+          session.
+        </p>
+        <input
+          id="unlockPassword"
+          type="password"
+          placeholder="Master password"
+          autocomplete="off"
+        />
+        <button id="unlockBtn" class="primary-btn">Unlock</button>
+        <p id="unlockError" class="error hidden"></p>
+      </section>
+
+      <section id="state-unlocked" class="state hidden">
+        <div class="status-row">
+          <span class="dot dot-live"></span>
+          <span>Unlocked · autofill is active</span>
+        </div>
+
+        <div class="profile-picker">
+          <label for="profileSelect" class="field-label">Filling from</label>
+          <select id="profileSelect"></select>
+        </div>
+
+        <p class="sub">
+          Click into any field on a form. A small icon will appear — click it,
+          or press <kbd>Tab</kbd> then <kbd>Enter</kbd>, to fill that field from
+          your vault.
+        </p>
+        <button id="fillAllBtn" class="primary-btn">
+          Fill all fields on this page
+        </button>
+        <div class="btn-row">
+          <button id="lockBtn" class="ghost-btn full">Lock now</button>
+        </div>
+        <p class="tiny">
+          Auto-locks after <span id="autoLockMinutes">15</span> minutes idle,
+          and always locks when the browser closes.
+        </p>
+      </section>
+
+      <footer>
+        <span class="tiny"
+          >Stored only on this device · never sent anywhere</span
+        >
+      </footer>
+    </div>
+
+    <script src="crypto.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>
