@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AutoFillX — Your profile</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <div class="app">
+      <div id="gate-create" class="gate hidden">
+        <div class="gate-card">
+          <div class="mark">AutoFillX</div>
+          <h1>Create your vault</h1>
+          <p class="sub">
+            Choose a master password. It derives the key that encrypts every
+            field below with AES-256 before anything is written to disk.
+            AutoFillX never stores this password, and there is no way to recover
+            a forgotten one — write it down somewhere safe.
+          </p>
+          <label class="field-label">Master password</label>
+          <input
+            id="createPassword"
+            type="password"
+            autocomplete="new-password"
+          />
+          <label class="field-label">Confirm password</label>
+          <input
+            id="createPasswordConfirm"
+            type="password"
+            autocomplete="new-password"
+          />
+          <p id="createError" class="error hidden"></p>
+          <button id="createSubmit" class="primary-btn">
+            Create vault &amp; continue
+          </button>
+        </div>
+      </div>
+
+      <div id="gate-unlock" class="gate hidden">
+        <div class="gate-card">
+          <div class="mark">AutoFillX</div>
+          <h1>Unlock your vault</h1>
+          <p class="sub">
+            Enter your master password to view and edit your saved profile.
+          </p>
+          <label class="field-label">Master password</label>
+          <input
+            id="unlockPassword"
+            type="password"
+            autocomplete="current-password"
+          />
+          <p id="unlockError" class="error hidden"></p>
+          <button id="unlockSubmit" class="primary-btn">Unlock</button>
+        </div>
+      </div>
+
+      <div id="editor" class="hidden">
+        <aside class="sidebar">
+          <div class="mark">AutoFillX</div>
+
+          <div class="profiles-block">
+            <div class="profiles-header">
+              <span>Profiles</span>
+              <button
+                id="addProfileBtn"
+                class="tiny-btn"
+                title="Add a new profile"
+              >
+                + Add
+              </button>
+            </div>
+            <div id="profileList" class="profile-list"></div>
+          </div>
+
+          <nav id="sectionNav"></nav>
+          <div class="sidebar-bottom">
+            <button id="lockNowBtn" class="ghost-btn full">Lock vault</button>
+          </div>
+        </aside>
+
+        <main>
+          <div class="topbar">
+            <div>
+              <h1 id="profileHeading">Your profile</h1>
+              <p class="sub">
+                Everything here is encrypted at rest with your master password.
+                Fill in only what you're comfortable storing — every field is
+                optional.
+              </p>
+            </div>
+            <div class="topbar-actions">
+              <span id="saveStatus" class="save-status"></span>
+              <button
+                id="setActiveBtn"
+                class="ghost-btn"
+                title="Use this profile for autofill"
+              >
+                Use for autofill
+              </button>
+              <button
+                id="renameProfileBtn"
+                class="ghost-btn"
+                title="Rename this profile"
+              >
+                Rename
+              </button>
+              <button
+                id="deleteProfileBtn"
+                class="ghost-btn"
+                title="Delete this profile"
+              >
+                Delete profile
+              </button>
+              <button id="saveBtn" class="primary-btn">Save changes</button>
+            </div>
+          </div>
+
+          <form id="profileForm"></form>
+
+          <section class="settings-block" id="settingsSection">
+            <h2>Security settings</h2>
+
+            <div class="settings-row">
+              <div>
+                <div class="settings-title">Auto-lock after inactivity</div>
+                <div class="settings-desc">
+                  Autofill turns off automatically after this many idle minutes,
+                  and always when the browser closes.
+                </div>
+              </div>
+              <input id="autoLockMinutes" type="number" min="1" max="120" />
+            </div>
+
+            <div class="settings-row">
+              <div>
+                <div class="settings-title">Change master password</div>
+                <div class="settings-desc">
+                  Re-encrypts your entire profile with a new password.
+                </div>
+              </div>
+              <button id="changePasswordBtn" class="ghost-btn">
+                Change password
+              </button>
+            </div>
+
+            <div class="settings-row danger">
+              <div>
+                <div class="settings-title">Delete vault</div>
+                <div class="settings-desc">
+                  Permanently erases your encrypted profile from this device.
+                  Cannot be undone.
+                </div>
+              </div>
+              <button id="deleteVaultBtn" class="danger-btn">
+                Delete vault
+              </button>
+            </div>
+          </section>
+        </main>
+      </div>
+
+      <div id="modalOverlay" class="modal-overlay hidden">
+        <div class="modal">
+          <h2>Change master password</h2>
+          <label class="field-label">Current password</label>
+          <input
+            id="cpCurrent"
+            type="password"
+            autocomplete="current-password"
+          />
+          <label class="field-label">New password</label>
+          <input id="cpNew" type="password" autocomplete="new-password" />
+          <label class="field-label">Confirm new password</label>
+          <input id="cpConfirm" type="password" autocomplete="new-password" />
+          <p id="cpError" class="error hidden"></p>
+          <div class="modal-actions">
+            <button id="cpCancel" class="ghost-btn">Cancel</button>
+            <button id="cpSubmit" class="primary-btn">Update password</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="deleteOverlay" class="modal-overlay hidden">
+        <div class="modal">
+          <h2>Delete vault</h2>
+          <p class="sub">
+            This permanently deletes your encrypted profile from this device.
+            Type <strong>DELETE</strong> to confirm.
+          </p>
+          <input id="deleteConfirmInput" type="text" autocomplete="off" />
+          <div class="modal-actions">
+            <button id="deleteCancel" class="ghost-btn">Cancel</button>
+            <button id="deleteSubmit" class="danger-btn">
+              Delete permanently
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="crypto.js"></script>
+    <script src="schema.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>
