@@ -1,0 +1,390 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #ffffff;
+  color: #000000;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  min-height: 100vh;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.mark {
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 22px;
+}
+
+.gate {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.gate-card {
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #000000;
+  border-radius: 6px;
+  padding: 30px;
+}
+
+.gate-card h1 {
+  font-size: 19px;
+  margin: 0 0 10px;
+}
+
+.sub {
+  color: #444444;
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+
+.field-label {
+  display: block;
+  font-size: 12px;
+  color: #444444;
+  margin: 12px 0 6px;
+}
+
+input[type="password"],
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="date"],
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 9px 11px;
+  border-radius: 4px;
+  border: 1px solid #000000;
+  background: #ffffff;
+  color: #000000;
+  font-size: 13.5px;
+  font-family: inherit;
+  outline: none;
+}
+
+textarea {
+  min-height: 70px;
+  resize: vertical;
+}
+
+.primary-btn {
+  margin-top: 16px;
+  width: 100%;
+  background: #000000;
+  color: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.primary-btn:hover {
+  background: #222222;
+}
+
+.error {
+  color: #000000;
+  font-weight: 600;
+  font-size: 12.5px;
+  margin: 10px 0 0;
+}
+
+#editor {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: 100vh;
+}
+
+.sidebar {
+  border-right: 1px solid #000000;
+  padding: 22px 16px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.sidebar nav a {
+  color: #333333;
+  text-decoration: none;
+  font-size: 13px;
+  padding: 7px 8px;
+}
+.sidebar nav a:hover {
+  background: #f0f0f0;
+}
+
+.sidebar-bottom {
+  padding-top: 12px;
+  border-top: 1px solid #000000;
+}
+
+.profiles-block {
+  margin-bottom: 16px;
+}
+
+.profiles-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: #666666;
+  margin-bottom: 8px;
+}
+
+.tiny-btn {
+  background: #ffffff;
+  border: 1px solid #000000;
+  color: #000000;
+  border-radius: 3px;
+  padding: 3px 7px;
+  font-size: 11px;
+  cursor: pointer;
+}
+.tiny-btn:hover {
+  background: #f0f0f0;
+}
+
+.profile-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #000000;
+}
+
+.profile-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #333333;
+}
+.profile-pill:hover {
+  background: #f0f0f0;
+}
+.profile-pill.active {
+  background: #000000;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.profile-pill .dot-active {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+  opacity: 0;
+}
+.profile-pill.is-autofill-target .dot-active {
+  opacity: 1;
+}
+
+main {
+  padding: 30px 40px 80px;
+  max-width: 760px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.topbar h1 {
+  margin: 0 0 8px;
+  font-size: 21px;
+}
+.topbar .sub {
+  margin: 0;
+  max-width: 460px;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.topbar-actions button {
+  width: auto;
+  margin-top: 0;
+}
+
+.save-status {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.ghost-btn {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  padding: 9px 14px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.ghost-btn:hover {
+  background: #f0f0f0;
+}
+.ghost-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.ghost-btn.full {
+  width: 100%;
+}
+
+.danger-btn {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  padding: 9px 14px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.danger-btn:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+.form-section {
+  border: 1px solid #000000;
+  border-radius: 6px;
+  padding: 20px 22px;
+  margin-bottom: 16px;
+  scroll-margin-top: 24px;
+}
+
+.form-section h2 {
+  font-size: 15px;
+  margin: 0 0 4px;
+}
+
+.sensitive-note {
+  font-size: 12px;
+  color: #444444;
+  margin: 0 0 14px;
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 18px;
+}
+
+.field-grid .full-width {
+  grid-column: 1 / -1;
+}
+
+.field-wrap label {
+  display: block;
+  font-size: 12px;
+  color: #444444;
+  margin-bottom: 6px;
+}
+
+.settings-block {
+  border: 1px solid #000000;
+  border-radius: 6px;
+  padding: 20px 22px;
+  margin-top: 26px;
+}
+
+.settings-block h2 {
+  font-size: 15px;
+  margin: 0 0 14px;
+}
+
+.settings-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 14px 0;
+  border-top: 1px solid #cccccc;
+}
+.settings-row:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.settings-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+.settings-desc {
+  font-size: 12px;
+  color: #555555;
+  max-width: 380px;
+}
+
+.settings-row #autoLockMinutes {
+  width: 80px;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.modal {
+  background: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 6px;
+  padding: 24px;
+  width: 100%;
+  max-width: 360px;
+}
+.modal h2 {
+  margin: 0 0 6px;
+  font-size: 16px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+.modal-actions button {
+  flex: 1;
+  margin-top: 0;
+}
