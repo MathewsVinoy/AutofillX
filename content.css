@@ -1,0 +1,21 @@
+.vaultfill-badge {
+  position: absolute;
+  z-index: 2147483647;
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.vaultfill-badge:hover {
+  background: #000000;
+  color: #ffffff;
+}
